@@ -1,11 +1,15 @@
 <?php
+/*//defino constante ROOT_PATH 
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', realpath(dirname(__FILE__) . '/../../'));
+}*/
 require_once(__DIR__ . '../../models/ToDoModel.php');
 //var_dump("ToDoModel included successfully");
 require_once(__DIR__ . '../../models/TaskModel.php');
 //var_dump("TaskModel included successfully");
 require_once(__DIR__ . '/../../lib/base/Controller.php');
 //var_dump("Controller included successfully");
-require_once(__DIR__ . '/../../web/index.php');
+
 
 class TaskController extends Controller{
 
@@ -18,7 +22,7 @@ class TaskController extends Controller{
     public function indexAction() {
         // Aquí puedes realizar cualquier lógica adicional si es necesario
        //echo "Including index.php from: " . ROOT_PATH . '/web/index.php' . "<br>";
-        include(ROOT_PATH . '/web/index.php');
+        //include(ROOT_PATH . '/web/index.php');
        
     }
 
@@ -27,14 +31,18 @@ class TaskController extends Controller{
             //exit(0);
         // Verificar si se enviaron todos los campos necesarios y si tienen un formato válido
         $requiredFields = ['taskName', 'creationDate', 'deadline', 'status', 'createdBy'];
+        $errors = []; //dafino variable errores
         foreach ($requiredFields as $field) {
             if (!isset($_POST[$field]) || empty($_POST[$field])) {
-                echo "Error: The field '$field' is required.";
-                return; // Detener la ejecución si falta algo
+                $errors[] = "Error: The field '$field' is required.";
+               
             }
             //pendiente validar algun campo mas para que no pete la app
         }
-    
+        if (!empty($errors)) {
+            return $errors; // Retornar los errores si existen
+        }
+        
         //procesar los datos
         $taskName = $_POST["taskName"];
         $creationDate = $_POST["creationDate"];
@@ -51,7 +59,8 @@ class TaskController extends Controller{
         $currentTasks = $this->toDo->getTasks();
         // Imprimir los datos obtenidos
         //var_dump($currentTasks);
-        return $currentTasks;
+       //return $currentTasks;
+        $this->view->currentTasks = $currentTasks;
     }
     
     
@@ -69,14 +78,14 @@ class TaskController extends Controller{
 
 
 
-   /* public function UpdateTaskViewsAction(){
+   public function UpdateTaskViewsAction(){
 
         if (isset($_GET["taskId"])) {
             $taskId = $_GET["taskId"];
             $tasksFound = $this->toDo->searchTask($taskId);  
             return $tasksFound; 
         }
-    }*/
+    }
 
     public function updateTaskAction(){
         if(isset($_POST["taskId"])){    
@@ -113,12 +122,32 @@ class TaskController extends Controller{
 
 
 }
+/*
+//debug
+$controller = new TaskController();
+
+// Llamar método indexAction()
+var_dump($controller->indexAction());
+
+// Llamar método insertTaskAction() 
+var_dump($controller->insertTaskAction());
+
+// Llamar método tasksListViewsAction() 
+var_dump($controller->tasksListViewsAction());
+
+// Llamar método deleteTaskAction()
+var_dump($controller->deleteTaskAction());
+
+// Llamar método updateTaskAction() 
+var_dump($controller->updateTaskAction());
+
 
 //$TaskController = new TaskController();
 //$currentTasks = $TaskController->tasksList_viewsAction();
 // $TaskController->editTaskAction($updateTask);
 //var_dump($currentTasks);
 //var_dump($_POST);
-$controller = new TaskController();
+//$controller = new TaskController();
 //$controller->insertTaskAction();
-var_dump($controller->indexAction());
+//var_dump($controller->indexAction());
+*/

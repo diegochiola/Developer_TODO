@@ -24,4 +24,6 @@ $routes = array(
 		'/UpdateTask'=> 'Task#UpdateTaskViews',
 		// Edicion tarea
 		'/updateTask'=>'Task#updateTaskAction',
+		
+		//'/updateTask_views' => 'TaskController#updateTaskAction',
 );

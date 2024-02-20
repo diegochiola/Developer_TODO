@@ -152,7 +152,9 @@ class Router
 								$namedParameters[$index]
 						);
 					}
-					
+					//ALERT!!!!!!!!!!!!!!!
+					 // executes the action on the controller
+					 //$controller->execute($action);
 					return true;
 				}
 			}

@@ -11,8 +11,8 @@ class ToDoModel {
         if (!file_exists($filePath)) {
             file_put_contents($filePath, '[]'); // Crea un archivo JSON vacío si no existe
         }
-        $currentTasks = json_decode(file_get_contents($filePath), true);
-        return $this->currentTasks = $currentTasks;
+        $this->currentTasks = json_decode(file_get_contents($filePath), true);
+        return $this->currentTasks;
     }
     // Método para obtener el último ID de tarea
     public function getLastTaskId(): int {

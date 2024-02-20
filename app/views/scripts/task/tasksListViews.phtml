@@ -38,10 +38,8 @@
 
             <!-- Filas para insertar datos -->
             <?php
-            $TaskController = new TaskController();
-            $currentTasks = $TaskController->tasksListViewsAction();
-            if ($currentTasks !== null) :
-                foreach ($currentTasks as $task) : ?>
+            if ($this->currentTasks !== null) :
+                foreach ($this->currentTasks as $task) : ?>
                     <tr>
                         <td class="text-center"><?php echo $task['taskId']; ?></td> 
                         <td class="text-center"><?php echo $task['taskName'] ?></td>

@@ -18,13 +18,10 @@
     <!-- formulario update tasksList -->
     <div id="updateTaskForm" class="bg-gray-100 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4">
     <?php
-    
-    $TaskController = new TaskController();
-    $tasksFound = $TaskController->updateTaskViewsAction();
-    
-
+    $taskController = new TaskController();
+    $tasksFound = $taskController->updateTaskViewsAction();
     ?>
-    <form action="updateTask" method="post" class="w-full max-w-md mx-auto">
+    <form action="TaskController/updateTaskAction" method="post" class="w-full max-w-md mx-auto">
         <input type="hidden" name="taskId" value="<?php echo htmlspecialchars($tasksFound['taskId']); ?>">
         <!-- Task -->
         <div class="mb-4">
