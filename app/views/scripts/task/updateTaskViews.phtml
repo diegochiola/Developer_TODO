@@ -18,10 +18,19 @@
     <!-- formulario update tasksList -->
     <div id="updateTaskForm" class="bg-gray-100 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4">
     <?php
-    $taskController = new TaskController();
-    $tasksFound = $taskController->updateTaskViewsAction();
+   
+    if (isset($_GET["taskId"])) {// Verificamos si el ID de la tarea está en la URL
+        $taskController = new TaskController();
+        $tasksFound = $taskController->tasksFoundAction($_GET["taskId"]); //método para buscar la tarea por su ID
+        // Verificamos si se encontró la tarea
+        if ($tasksFound) {
     ?>
-    <form action="TaskController/updateTaskAction" method="post" class="w-full max-w-md mx-auto">
+   
+   <!--<?php
+    //$taskController = new TaskController();
+    //$tasksFound = $taskController->updateTaskViewsAction();
+    ?>-->
+    <form action="/UpdateTaskAction" method="post" class="w-full max-w-md mx-auto">
         <input type="hidden" name="taskId" value="<?php echo htmlspecialchars($tasksFound['taskId']); ?>">
         <!-- Task -->
         <div class="mb-4">
@@ -57,5 +66,13 @@
         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit Update</button>
         </div>
     </form>
+    <?php
+        } else {
+            echo "Task not found."; // Mostrar un mensaje si la tarea no se encuentra
+        }
+    } else {
+        echo "Task ID is not defined."; // Mostrar un mensaje si el ID de la tarea no está definido en la URL
+    }
+    ?>
 </body>
 </html>

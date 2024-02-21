@@ -21,9 +21,10 @@ $routes = array(
 		// Insertar una nueva tarea
 		'/createTask'=> 'Task#createTaskAction',
 		// Pre-edicion de una tarea
-		'/UpdateTask'=> 'Task#UpdateTaskViews',
+		'/UpdateTaskViews'=> 'Task#UpdateTaskViews',//UpdateTask está vinculada a UpdateTaskViews en el controlador TaskController.
 		// Edicion tarea
-		'/updateTask'=>'Task#updateTaskAction',
+		'/updateTask'=>'Task#updateTaskAction',//updateTask está vinculada a updateTaskAction en el controlador TaskController.
+
 		
 		//'/updateTask_views' => 'TaskController#updateTaskAction',
 );

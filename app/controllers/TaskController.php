@@ -11,10 +11,12 @@ require_once(__DIR__ . '/../../lib/base/Controller.php');
 class TaskController extends Controller{
 
     private $toDo;
+    public $view;
 
     public function __construct()
     {
         $this->toDo =  new ToDoModel();  
+        $this->view = new View();
     }
     public function indexAction() {
        
@@ -67,7 +69,7 @@ class TaskController extends Controller{
     }
     //probar con POST rn lugar de GET
     public function deleteTaskAction() {
-        var_dump($_POST);
+        //var_dump($_POST); ver si recogia el valor a traves de metodo post
         if(isset($_POST["taskId"])) {
             $taskId = $_POST["taskId"];
             var_dump($taskId);
@@ -92,14 +94,14 @@ class TaskController extends Controller{
     }
 */
 
-
    public function UpdateTaskViewsAction(){
     if (isset($_GET["taskId"])) {
         $taskId = $_GET["taskId"];
         $tasksFound = $this->toDo->searchTask($taskId);  
-        $this->view->tasksFound = $tasksFound; //se asigna a la vista
+        $this->view->tasksFound = $tasksFound; //se asigna a la vistallevando los datos del id
+        return $this->view->render('updateTaskViews.phtml'); // y la renderiza
     } else {
-        return $this->view->render('error_view.php', ['error' => 'Task ID is not defined.']);
+        return $this->view->render('error_view.php', ['error' => 'Task ID is not defined.']); //sino sale error
     }
 }
 
@@ -129,12 +131,20 @@ public function updateTaskAction() {
         }
     }
 }
+//metodo para buscaer tarea por id
+public function tasksFoundAction($taskId) {
+    $tasksFound = $this->toDo->searchTask($taskId);
+    return $tasksFound;
 }
 
-//debug
-$controller = new TaskController();
 
-var_dump($controller->deleteTaskAction());
+}
+
+
+//debug
+//$controller = new TaskController();
+
+//var_dump($controller->deleteTaskAction());
 /*
 // Llamar método indexAction()
 var_dump($controller->indexAction());

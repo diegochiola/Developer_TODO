@@ -48,15 +48,20 @@
                         <td class="text-center"><?php echo $task['status'] ?></td>
                         <td class="text-center"><?php echo $task['createdBy'] ?></td>
                         <td class="py-2 px-4 text-right" colspan="2"><!-- para que aparezcan los botones debajo de la columna options -->
-                         <!-- Boton update task -->
-                            <a href="updateTask_views?taskId=<?php echo $task['taskId'] ?>&taskName=<?php echo $task['taskName'] ?>&creationDate=<?php echo $task['creationDate'] ?>&deadline=<?php echo $task['deadline'] ?>&status=<?php echo $task['status'] ?>&created_By=<?php echo $task['createdBy'] ?>">
+                        <!-- Boton update task -->
+                        <a href="<?= WEB_ROOT ?>/UpdateTaskViews?taskId=<?= $task['taskId'] ?>">
+                            <input type='button' name='update' id='update' value='Update' class='bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-300'>
+                        </a>
+                         
+                         <!--<a href="updateTask_views?taskId=<?php echo $task['taskId'] ?>&taskName=<?php echo $task['taskName'] ?>&creationDate=<?php echo $task['creationDate'] ?>&deadline=<?php echo $task['deadline'] ?>&status=<?php echo $task['status'] ?>&created_By=<?php echo $task['createdBy'] ?>">
                                 <input type='button' name='update' id='update' value='Update' class='bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-300'>
-                            </a>
-                            <!-- Formulario oculto para eliminar task -->
-                            <form action="<?= $this->baseUrl . '/deleteTask' ?>" method="post" style="display: inline;">
-                                <input type="hidden" name="taskId" value="<?= $task['taskId'] ?>">
-                                <button type="submit" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>
-                            </form>
+                            </a>-->
+
+                        <!-- Formulario oculto para eliminar task -->
+                        <form action="<?= $this->baseUrl . '/deleteTask' ?>" method="post" style="display: inline;">
+                            <input type="hidden" name="taskId" value="<?= $task['taskId'] ?>">
+                            <button type="submit" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>
+                        </form>
                             <!-- Boton delete task 
                         <a href="/deleteTask?taskId=<?= $task['taskId'] ?>" onclick="return confirmDelete('<?= $task['taskName'] ?>');">
                             <input type='button' name='delete' id='delete' value='Delete' class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>
