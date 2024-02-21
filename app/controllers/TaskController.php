@@ -27,34 +27,39 @@ class TaskController extends Controller{
     }
 
     public function insertTaskAction(){
-            //var_dump("HOOLA");
-            //exit(0);
-        // Verificar si se enviaron todos los campos necesarios y si tienen un formato válido
-        $requiredFields = ['taskName', 'creationDate', 'deadline', 'status', 'createdBy'];
-        $errors = []; //dafino variable errores
-        foreach ($requiredFields as $field) {
-            if (!isset($_POST[$field]) || empty($_POST[$field])) {
-                $errors[] = "Error: The field '$field' is required.";
-               
-            }
-            //pendiente validar algun campo mas para que no pete la app
+        //var_dump("HOOLA");
+        //exit(0);
+    // Verificar si se enviaron todos los campos necesarios y si tienen un formato válido
+    $requiredFields = ['taskName', 'creationDate', 'deadline', 'status', 'createdBy'];
+    $errors = []; //dafino variable errores
+    foreach ($requiredFields as $field) {
+        if (!isset($_POST[$field]) || empty($_POST[$field])) {
+            $errors[] = "Error: The field '$field' is required.";
+           
         }
-        if (!empty($errors)) {
-            return $errors; // Retornar los errores si existen
-        }
-        
-        //procesar los datos
-        $taskName = $_POST["taskName"];
-        $creationDate = $_POST["creationDate"];
-        $deadline = $_POST["deadline"];
-        $status = $_POST["status"];
-        $createdBy = $_POST["createdBy"];
-    
-        $toDo = $this->toDo;
-        $toDo->createTask(new Task($taskName, $creationDate, $deadline, $status, $createdBy));
-        header("Location: /tasksList");// Redirige a taskslist
-        exit();
+        //pendiente validar algun campo mas para que no pete la app
     }
+    if (!empty($errors)) {
+        return $this->view->render('error_view.php', ['errors' => $errors]);
+    }
+    
+    //procesar los datos
+    $taskName = $_POST["taskName"];
+    $creationDate = $_POST["creationDate"];
+    $deadline = $_POST["deadline"];
+    $status = $_POST["status"];
+    $createdBy = $_POST["createdBy"];
+
+    $task = new Task($taskName, $creationDate, $deadline, $status, $createdBy);
+
+    // Llamar al método createTask de ToDoModel y pasarle el objeto Task
+    $this->toDo->createTask($task);
+
+    // Redirigir a tasksList
+    //header("Location: /");
+    //exit();
+}
+
     public function tasksListViewsAction() {
         $currentTasks = $this->toDo->getTasks();
         // Imprimir los datos obtenidos
@@ -84,6 +89,9 @@ class TaskController extends Controller{
             $taskId = $_GET["taskId"];
             $tasksFound = $this->toDo->searchTask($taskId);  
             return $tasksFound; 
+        } else {
+            // Manejar el caso en que taskId no está definido
+            return $this->view->render('error_view.php', ['error' => 'Task ID is not defined.']);
         }
     }
 
@@ -113,14 +121,15 @@ class TaskController extends Controller{
 
             // var_dump($updatedTask);
 
-            $toDo->updateTask($updatedTask);
-
-            header("Location: /tasksList");
-            exit();
+            if ($toDo->updateTask($updatedTask)) {
+                header("Location: /tasksList");
+                exit();
+            } else {
+                // Manejar el caso en que la actualización falla
+                return $this->view->render('error_view.php', ['error' => 'Failed to update task.']);
+            }
         }
     }
-
-
 }
 /*
 //debug

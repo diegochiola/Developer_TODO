@@ -133,17 +133,17 @@ public function updateTask(array $updatedTask){
  
 }
 //Probar que el crud funcione correctamente
-$todoModel = new ToDoModel();
+//$todoModel = new ToDoModel();
 //$currentTasks = $todo->getTasks();
 //var_dump($arrayTasks);
-$newTask = new Task(
+/*$newTask = new Task(
     "Change PC", // Nombre de la tarea
     "2024-02-19 10:00:00", // Fecha de creación
     "2024-02-20 12:00:00", // Fecha límite
     TaskStatus::DONE, // Estado de la tarea
     "Ricardo" // Creador de la tarea
 );
-
+*/
 //$todo->createTask($task1);
 //$todo->updateTask($currentTasks);
 
