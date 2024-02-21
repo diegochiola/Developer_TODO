@@ -1,8 +1,5 @@
 <?php
-/*//defino constante ROOT_PATH 
-if (!defined('ROOT_PATH')) {
-    define('ROOT_PATH', realpath(dirname(__FILE__) . '/../../'));
-}*/
+
 require_once(__DIR__ . '../../models/ToDoModel.php');
 //var_dump("ToDoModel included successfully");
 require_once(__DIR__ . '../../models/TaskModel.php');
@@ -26,7 +23,7 @@ class TaskController extends Controller{
        
     }
 
-    public function insertTaskAction() {
+ public function createTaskAction() { //createTaskActionAction a ver si se soluciona el error
         $requiredFields = ['taskName', 'creationDate', 'deadline', 'status', 'createdBy'];
         $errors = [];
         foreach ($requiredFields as $field) {
@@ -34,22 +31,32 @@ class TaskController extends Controller{
                 $errors[] = "Error: The field '$field' is required.";
             }
         }
-        if (!empty($errors)) {
-            return $this->view->render('error_view.php', ['errors' => $errors]);
+       
+        if (empty($errors)) {
+            // Accede a los datos del formulario de manera segura
+            $taskName = $_POST["taskName"];
+            $creationDate = $_POST["creationDate"];
+            $deadline = $_POST["deadline"];
+            $status = $_POST["status"];
+            $createdBy = $_POST["createdBy"];
+    
+            // Crea una nueva instancia de la clase Task con los datos proporcionados
+            $task = new Task($taskName, $creationDate, $deadline, $status, $createdBy);
+    
+            // Llama al método createTask del modelo ToDoModel para guardar la nueva tarea
+            $this->toDo->createTask($task);
+    
+            // Redirige al usuario a la lista de tareas después de crear la tarea
+            header("Location: /tasksList");
+            exit();
+        } else {
+            // Si hay errores, podrías manejarlos de alguna manera, como mostrar un mensaje de error al usuario
+            foreach ($errors as $error) {
+                echo $error . "<br>";
+            }
         }
-        
-        $taskName = $_POST["taskName"];
-        $creationDate = $_POST["creationDate"];
-        $deadline = $_POST["deadline"];
-        $status = $_POST["status"];
-        $createdBy = $_POST["createdBy"];
-
-        $task = new Task($taskName, $creationDate, $deadline, $status, $createdBy);
-        $this->toDo->createTask($task);
-
-        header("Location: /tasksList");
-        exit();
     }
+
 
     public function tasksListViewsAction() {
         $currentTasks = $this->toDo->getTasks();
@@ -58,9 +65,20 @@ class TaskController extends Controller{
        //return $currentTasks;
         $this->view->currentTasks = $currentTasks;
     }
-    
-    
+    //probar con POST rn lugar de GET
     public function deleteTaskAction() {
+        if(isset($_POST["taskId"])) {
+            $taskId = $_POST["taskId"];
+            $this->toDo->deleteTask($taskId);
+            header("Location: /tasksList");
+            exit();
+        } else {
+            echo "Root Error";
+        }    
+    }
+    
+    /*public function deleteTaskAction() {
+        
         if(isset($_GET["taskId"])){
             $taskId = $_GET["taskId"];
             $this->toDo->deleteTask($taskId);
@@ -70,14 +88,14 @@ class TaskController extends Controller{
             echo "Root Error";
         }    
     }
-
+*/
 
 
    public function UpdateTaskViewsAction(){
     if (isset($_GET["taskId"])) {
         $taskId = $_GET["taskId"];
         $tasksFound = $this->toDo->searchTask($taskId);  
-        return $tasksFound; 
+        $this->view->tasksFound = $tasksFound; //se asigna a la vista
     } else {
         return $this->view->render('error_view.php', ['error' => 'Task ID is not defined.']);
     }
@@ -122,10 +140,11 @@ var_dump($controller->insertTaskAction());
 
 // Llamar método tasksListViewsAction() 
 var_dump($controller->tasksListViewsAction());
-
+*/
 // Llamar método deleteTaskAction()
-var_dump($controller->deleteTaskAction());
-
+$controller = new TaskController();
+var_dump($controller->deleteTaskAction(12));
+/*
 // Llamar método updateTaskAction() 
 var_dump($controller->updateTaskAction());
 

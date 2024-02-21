@@ -17,9 +17,9 @@ $routes = array(
 		'/tasksList'=> 'Task#tasksListViews',
 		
 		// Borrar Tarea
-		'/deleteTask' => 'Task#deleteTask',
+		'/deleteTask' => 'Task#deleteTaskAction',
 		// Insertar una nueva tarea
-		'/insertTask'=> 'Task#insertTaskAction',
+		'/createTask'=> 'Task#createTaskAction',
 		// Pre-edicion de una tarea
 		'/UpdateTask'=> 'Task#UpdateTaskViews',
 		// Edicion tarea

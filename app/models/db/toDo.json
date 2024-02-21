@@ -30,5 +30,69 @@
         "deadline": "2024-02-20 12:00:00",
         "status": "Done",
         "createdBy": "Ricardo"
+    },
+    {
+        "taskId": 6,
+        "taskName": "Reorder files",
+        "creationDate": "2024-02-05 15:00:00",
+        "deadline": "2024-02-10 19:00:00",
+        "status": "Done",
+        "createdBy": "Maria Luisa"
+    },
+    {
+        "taskId": 8,
+        "taskName": "Rename files",
+        "creationDate": "2024-02-05 10:00:00",
+        "deadline": "2024-02-10 12:00:00",
+        "status": "Done",
+        "createdBy": "Maria Jose"
+    },
+    {
+        "taskId": 9,
+        "taskName": "Rename files",
+        "creationDate": "2024-02-05 10:00:00",
+        "deadline": "2024-02-10 12:00:00",
+        "status": "Done",
+        "createdBy": "Maria Jose"
+    },
+    {
+        "taskId": 10,
+        "taskName": "Rename files",
+        "creationDate": "2024-02-05 10:00:00",
+        "deadline": "2024-02-10 12:00:00",
+        "status": "Done",
+        "createdBy": "Maria Jose"
+    },
+    {
+        "taskId": 11,
+        "taskName": "Rename files",
+        "creationDate": "2024-02-05 10:00:00",
+        "deadline": "2024-02-10 12:00:00",
+        "status": "Done",
+        "createdBy": "Maria Jose"
+    },
+    {
+        "taskId": 12,
+        "taskName": "Rename files",
+        "creationDate": "2024-02-05 10:00:00",
+        "deadline": "2024-02-10 12:00:00",
+        "status": "Done",
+        "createdBy": "Maria Jose"
+    },
+    {
+        "taskId": 13,
+        "taskName": "Rename files",
+        "creationDate": "2024-02-05 10:00:00",
+        "deadline": "2024-02-10 12:00:00",
+        "status": "Done",
+        "createdBy": "Maria Jose"
+    },
+    {
+        "taskId": 14,
+        "taskName": "Rename files",
+        "creationDate": "2024-02-05 10:00:00",
+        "deadline": "2024-02-10 12:00:00",
+        "status": "Done",
+        "createdBy": "Maria Jose"
     }
 ]

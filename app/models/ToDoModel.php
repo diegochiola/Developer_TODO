@@ -42,7 +42,13 @@ class ToDoModel {
         ];
         
         $currentTasks []= $newTask; // se inserta la tarea en el array de $arrayTasks
-        $this->addJsonFile($currentTasks);// codificamos el array $arrayTasks en  archivo Json 
+          // Intentamos escribir el array actualizado en el archivo JSON
+        if ($this->addJsonFile($currentTasks)) {
+            return true; // La tarea se agregó correctamente
+        } else {
+            return false; // Hubo un error al escribir en el archivo JSON
+        }
+        //$this->addJsonFile($currentTasks);// codificamos el array $arrayTasks en  archivo Json 
     }
 //Metodo para agregar al archivo json 
  public function addJsonFile($currentTasks){ //agregar al json
@@ -118,7 +124,7 @@ public function updateTask(array $updatedTask){
         $longArray = count($currentTasks);
         $i=0;
         while($found==false && $i<$longArray){
-            if($currentTasks[$i]["taskId"]==$updatedTask["taskId"])
+            if($currentTasks[$i]["taskId"]==$updatedTask) //==$updatedTask["taskId"]
             {   //sobreescribir datos nuevos
                 $currentTasks[$i] = array_merge($currentTasks[$i], $updatedTask);
                 $found = true;//se vuelve true cuando encuentra la tarea
@@ -133,19 +139,20 @@ public function updateTask(array $updatedTask){
  
 }
 //Probar que el crud funcione correctamente
-//$todoModel = new ToDoModel();
-//$currentTasks = $todo->getTasks();
-//var_dump($arrayTasks);
-/*$newTask = new Task(
-    "Change PC", // Nombre de la tarea
-    "2024-02-19 10:00:00", // Fecha de creación
-    "2024-02-20 12:00:00", // Fecha límite
+/*
+$todoModel = new ToDoModel();
+$currentTasks = $todoModel->getTasks();
+var_dump($currentTasks);
+$task1 = new Task(
+    "Rename files", // Nombre de la tarea
+    "2024-02-05 10:00:00", // Fecha de creación
+    "2024-02-10 12:00:00", // Fecha límite
     TaskStatus::DONE, // Estado de la tarea
-    "Ricardo" // Creador de la tarea
+    "Maria Jose" // Creador de la tarea
 );
-*/
-//$todo->createTask($task1);
-//$todo->updateTask($currentTasks);
+
+$todoModel->createTask($task1);
+$todoModel->updateTask($currentTasks);
 
 //$todoModel->createTask($newTask);
 //$currentTasks = $todoModel->getTasks();
@@ -159,8 +166,8 @@ public function updateTask(array $updatedTask){
 //$taskIdToSearch = 1; // Cambiar por el ID de la tarea que deseas buscar
 //$foundTask = $todoModel->searchTask($taskIdToSearch);
 //var_dump($foundTask);
-
-/*$taskIdToUpdate = 3; // Cambiar por el ID de la tarea que deseas actualizar
+/*
+$taskIdToUpdate = 3; // Cambiar por el ID de la tarea que deseas actualizar
 $updatedTaskData = [
     "taskId" => $taskIdToUpdate,
     "taskName" => "Revisar correos electrónicos",
