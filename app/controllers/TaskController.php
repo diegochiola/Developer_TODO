@@ -67,8 +67,10 @@ class TaskController extends Controller{
     }
     //probar con POST rn lugar de GET
     public function deleteTaskAction() {
+        var_dump($_POST);
         if(isset($_POST["taskId"])) {
             $taskId = $_POST["taskId"];
+            var_dump($taskId);
             $this->toDo->deleteTask($taskId);
             header("Location: /tasksList");
             exit();
@@ -128,10 +130,12 @@ public function updateTaskAction() {
     }
 }
 }
-/*
+
 //debug
 $controller = new TaskController();
 
+var_dump($controller->deleteTaskAction());
+/*
 // Llamar método indexAction()
 var_dump($controller->indexAction());
 
@@ -142,8 +146,8 @@ var_dump($controller->insertTaskAction());
 var_dump($controller->tasksListViewsAction());
 */
 // Llamar método deleteTaskAction()
-$controller = new TaskController();
-var_dump($controller->deleteTaskAction(12));
+//$controller = new TaskController();
+//var_dump($controller->deleteTaskAction(12));
 /*
 // Llamar método updateTaskAction() 
 var_dump($controller->updateTaskAction());
