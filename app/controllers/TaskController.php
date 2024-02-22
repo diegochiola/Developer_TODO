@@ -109,40 +109,42 @@ public function create_task_viewsAction(){
     }
 }
 
-public function update_taskAction() {
-    if (isset($_POST["taskId"])) {
-        $taskId = (int) $_POST["taskId"];
-        $taskName = $_POST["taskName"];
-        $creationDate = $_POST["creationDate"];
-        $deadline = $_POST["deadline"];
-        $status = $_POST["status"];
-        $createdBy = $_POST["createdBy"];
+    public function update_taskAction() {
+        if (isset($_POST["taskId"])) {
+            $taskId = (int) $_POST["taskId"];
+            $taskName = $_POST["taskName"];
+            $creationDate = $_POST["creationDate"];
+            $deadline = $_POST["deadline"];
+            $status = $_POST["status"];
+            $createdBy = $_POST["createdBy"];
 
-        $updatedTask = [
-            "taskId" => $taskId,
-            "taskName" => $taskName,
-            "creationDate" => $creationDate,
-            "deadline" => $deadline,
-            "status" => $status,
-            "createdBy" => $createdBy
-        ];
+            $updatedTask = [
+                "taskId" => $taskId,
+                "taskName" => $taskName,
+                "creationDate" => $creationDate,
+                "deadline" => $deadline,
+                "status" => $status,
+                "createdBy" => $createdBy
+            ];
 
-        if ($this->toDo->updateTask($updatedTask)) {
-            //header("Location: /tasksList");
-            //header("Location: " . WEB_ROOT . "/tasksList");
-            return $this->view->render('tasksListViews.phtml'); 
+            if ($this->toDo->updateTask($updatedTask)) {
+                //header("Location: /tasksList");
+                //header("Location: " . WEB_ROOT . "/tasksList");
+                //return $this->view->render('tasksListViews.phtml'); 
+            // Redirige al usuario a la lista de tareas después de crear la tarea
+            header("Location: tasks_list_views");
             exit();
-        } else {
-            return $this->view->render('error_view.php', ['error' => 'Failed to update task.']);
+            } else {
+                return $this->view->render('error_view.php', ['error' => 'Failed to update task.']);
+            }
         }
     }
-}
-//metodo para buscaer tarea por id
-public function task_foundAction($taskId) {
-    $taskId = $_GET["taskId"];
-    $tasksFound = $this->toDo->searchTask($taskId);
-    return $tasksFound;
-}
+    //metodo para buscaer tarea por id
+    public function task_foundAction($taskId) {
+        $taskId = $_GET["taskId"];
+        $tasksFound = $this->toDo->searchTask($taskId);
+        return $tasksFound;
+    }
 
 
 }
