@@ -6,7 +6,7 @@ require_once(__DIR__ . '../../models/TaskModel.php');
 //var_dump("TaskModel included successfully");
 require_once(__DIR__ . '/../../lib/base/Controller.php');
 //var_dump("Controller included successfully");
-
+require_once(__DIR__ . '/../../lib/base/View.php');
 
 class TaskController extends Controller{
 
@@ -24,8 +24,10 @@ class TaskController extends Controller{
         //include(ROOT_PATH . '/web/index.php');
        
     }
+public function create_task_viewsAction(){   
+}
 
- public function createTaskAction() { //createTaskActionAction a ver si se soluciona el error
+ public function create_taskAction() { 
         $requiredFields = ['taskName', 'creationDate', 'deadline', 'status', 'createdBy'];
         $errors = [];
         foreach ($requiredFields as $field) {
@@ -49,7 +51,7 @@ class TaskController extends Controller{
             $this->toDo->createTask($task);
     
             // Redirige al usuario a la lista de tareas después de crear la tarea
-            header("Location: /tasksList");
+            header("Location: tasks_list_views");
             exit();
         } else {
             // Si hay errores, podrías manejarlos de alguna manera, como mostrar un mensaje de error al usuario
@@ -60,7 +62,7 @@ class TaskController extends Controller{
     }
 
 
-    public function tasksListViewsAction() {
+    public function tasks_list_viewsAction() {
         $currentTasks = $this->toDo->getTasks();
         // Imprimir los datos obtenidos
         //var_dump($currentTasks);
@@ -68,19 +70,21 @@ class TaskController extends Controller{
         $this->view->currentTasks = $currentTasks;
     }
     //probar con POST rn lugar de GET
-    public function deleteTaskAction() {
-        //var_dump($_POST); ver si recogia el valor a traves de metodo post
-        if(isset($_POST["taskId"])) {
-            $taskId = $_POST["taskId"];
-            var_dump($taskId);
-            $this->toDo->deleteTask($taskId);
-            header("Location: /tasksList");
-            exit();
-        } else {
-            echo "Root Error";
-        }    
-    }
     
+    public function delete_taskAction() {
+        var_dump($_POST); //ver si funciona
+        if (!empty($_POST)) {
+            if (isset($_POST['taskId'])) {
+                $taskId = $_POST['taskId'];
+                var_dump($taskId);
+                $this->toDo->deleteTask($taskId);
+                header("Location: /tasks_list_views");
+                exit();
+            } 
+        } else {
+            echo "Request method not available.";
+        }
+    }
     /*public function deleteTaskAction() {
         
         if(isset($_GET["taskId"])){
@@ -94,7 +98,7 @@ class TaskController extends Controller{
     }
 */
 
-   public function UpdateTaskViewsAction(){
+   public function update_task_viewsAction(){
     if (isset($_GET["taskId"])) {
         $taskId = $_GET["taskId"];
         $tasksFound = $this->toDo->searchTask($taskId);  
@@ -105,7 +109,7 @@ class TaskController extends Controller{
     }
 }
 
-public function updateTaskAction() {
+public function update_taskAction() {
     if (isset($_POST["taskId"])) {
         $taskId = (int) $_POST["taskId"];
         $taskName = $_POST["taskName"];
@@ -124,7 +128,9 @@ public function updateTaskAction() {
         ];
 
         if ($this->toDo->updateTask($updatedTask)) {
-            header("Location: /tasksList");
+            //header("Location: /tasksList");
+            //header("Location: " . WEB_ROOT . "/tasksList");
+            return $this->view->render('tasksListViews.phtml'); 
             exit();
         } else {
             return $this->view->render('error_view.php', ['error' => 'Failed to update task.']);
@@ -132,7 +138,8 @@ public function updateTaskAction() {
     }
 }
 //metodo para buscaer tarea por id
-public function tasksFoundAction($taskId) {
+public function task_foundAction($taskId) {
+    $taskId = $_GET["taskId"];
     $tasksFound = $this->toDo->searchTask($taskId);
     return $tasksFound;
 }
@@ -143,8 +150,7 @@ public function tasksFoundAction($taskId) {
 
 //debug
 //$controller = new TaskController();
-
-//var_dump($controller->deleteTaskAction());
+//$controller->deleteTaskAction();
 /*
 // Llamar método indexAction()
 var_dump($controller->indexAction());

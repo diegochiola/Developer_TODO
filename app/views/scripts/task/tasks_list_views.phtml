@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!--link para sweetalert -->
     <title>TASKS LIST</title>
+    
 </head>
 
 <body style="background-color: #bbbbf5;">
@@ -15,7 +16,7 @@
    
     <div class="flex justify-between items-center mb-6">
         <!-- Boton para volver al index -->
-        <a href="<?= WEB_ROOT ?>/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " style="background-color:#282854;">Home</a>
+        <a href="<?= WEB_ROOT ?>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " style="background-color:#282854;">Home</a>
         <div class="text-4xl font-bold text-black mb-8 mt-10 text-center">TASKS LIST</div>
     </div>
     
@@ -49,7 +50,7 @@
                         <td class="text-center"><?php echo $task['createdBy'] ?></td>
                         <td class="py-2 px-4 text-right" colspan="2"><!-- para que aparezcan los botones debajo de la columna options -->
                         <!-- Boton update task -->
-                        <a href="<?= WEB_ROOT ?>/UpdateTaskViews?taskId=<?= $task['taskId'] ?>">
+                        <a href="<?= WEB_ROOT ?>/update_task_views?taskId=<?= $task['taskId'] ?>">
                             <input type='button' name='update' id='update' value='Update' class='bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-300'>
                         </a>
                          
@@ -57,15 +58,18 @@
                                 <input type='button' name='update' id='update' value='Update' class='bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-300'>
                             </a>-->
 
-                        <!-- Formulario oculto para eliminar task -->
-                        <form action="<?= $this->baseUrl . '/deleteTask' ?>" method="post" style="display: inline;">
+                        <!-- Formulario para eliminar task 
+                        <form action="/deleteTask" method="post" style="display: inline;">
                             <input type="hidden" name="taskId" value="<?= $task['taskId'] ?>">
                             <button type="submit" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>
-                        </form>
-                            <!-- Boton delete task 
-                        <a href="/deleteTask?taskId=<?= $task['taskId'] ?>" onclick="return confirmDelete('<?= $task['taskName'] ?>');">
-                            <input type='button' name='delete' id='delete' value='Delete' class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>
-                        </a> -->
+                        </form>-->
+
+                            <!-- Boton delete task-->
+                            <button onclick="confirmDelete(<?= $task['taskId'] ?>)" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300' >Delete</button>
+                      
+                            <!-- <a href="/deleteTask?taskId=<?= $task['taskId'] ?>" onclick="return confirmDelete('<?= $task['taskName'] ?>');">
+                            <button type="button" onclick="confirmAndSubmit(<?= $task['taskId'] ?>)" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>
+                        </a>  -->
                         </td>
                     </tr>
                     <?php endforeach;
@@ -73,12 +77,13 @@
         </table>
     </form>
     </div>
-    <!-- POP-UP para confirmar borrado de registro -->
-    <script>
-    function confirmDelete(taskName) {
-        return confirm("Are you sure? Once deleted, you will not be able to recover this task: " + taskName + ".");
-    }
-</script>
+
+        <!-- POP-UP para confirmar borrado de registro -->
+        <script>
+            function confirmDelete(taskName) {
+                return confirm("Are you sure? Once deleted, you will not be able to recover this task: " + taskName + ".");
+            }
+        </script>
     <!-- POP-UP para confirmar borrado de registro 
     <script>
         function confirmDelete($taskName) {

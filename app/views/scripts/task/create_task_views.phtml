@@ -10,14 +10,14 @@
     <main class="container mx-auto mt-10 lg:mt-20">
         <div class="flex justify-between items-center mb-6">
             <!-- Boton para volver al index -->
-            <a href="<?= WEB_ROOT ?>/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="background-color:#282854;">Home</a>
+            <a href="<?= WEB_ROOT ?>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="background-color:#282854;">Home</a>
             <div class="text-4xl font-bold text-black mb-8 mt-10 text-center">CREATE TASK</div>
             <!-- Boton para volver a tasks list -->
-            <a href="<?= WEB_ROOT ?>/tasksList" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="background-color:#282854;">Tasks List</a>
+            <a href="tasks_list_views" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="background-color:#282854;">Tasks List</a>
         </div>
         <!-- Formulario crear tarea -->
         <div class="bg-gray-100 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4">
-            <form action="<?= WEB_ROOT ?>/create/task" method="post" class="w-full max-w-md mx-auto">
+            <form action="create_task" method="post" class="w-full max-w-md mx-auto">
                 <!-- Task -->
                 <div class="mb-4"> 
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="taskName">Task:</label>
@@ -49,10 +49,18 @@
                 </div>
                 <!-- Boton submit update -->
                 <div class="flex justify-center">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Task</button>
+                    <button type="submit" name="create_task" value="create_task" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Task</button>
                 </div>
+              
+
             </form>
         </div>
     </main>
+        <!-- POP-UP para confirmar que se creo la tarea -->
+        <script>
+        function confirmCreate(taskName) {
+            return confirm("The task: " + taskName + " has beeen created.");
+        }
+        </script>
 </body>
 </html>

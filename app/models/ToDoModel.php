@@ -98,21 +98,20 @@ class ToDoModel {
         }
     }*/
 //metodo search task
-public function searchTask(int $taskId): array{
+public function searchTask(int $taskId): array {
     $currentTasks = $this->getTasks();
+    $taskFound = [];
     $found = false;
     $longArray = count($currentTasks);
-    $i=0;
-    while($found==false && $i<$longArray)             
-    {
-        if($currentTasks[$i]["taskId"]==$taskId)
-        {
+    $i = 0;
+    while (!$found && $i < $longArray) {
+        if ($currentTasks[$i]["taskId"] == $taskId) {
             $taskFound = $currentTasks[$i];
-            $found = true;//cuando encuentre la tarea pasa a true
+            $found = true;
         }
         $i++;
     }
-    return $taskFound; //devuelve la tarea encontrada que coincide con el task id
+    return $taskFound; // Devuelve un arreglo vacío 
 }
 
 //metodo update task
@@ -121,20 +120,22 @@ public function updateTask(array $updatedTask){
         $currentTasks = $this->getTasks();
         //var_dump($currentTasks);
         $found = false;
-        $longArray = count($currentTasks);
-        $i=0;
-        while($found==false && $i<$longArray){
-            if($currentTasks[$i]["taskId"]==$updatedTask) //==$updatedTask["taskId"]
-            {   //sobreescribir datos nuevos
-                $currentTasks[$i] = array_merge($currentTasks[$i], $updatedTask);
-                $found = true;//se vuelve true cuando encuentra la tarea
+        foreach ($currentTasks as &$task) {
+            if ($task["taskId"] == $updatedTask["taskId"]) {
+                $task = array_merge($task, $updatedTask);
+                $found = true;
+                break; // Termina el bucle una vez que se encuentra la tarea
             }
-            $i++;
         }
-       
-        $this->addJsonFile($currentTasks);
     
-}
+        if ($found) {
+            // Actualiza el archivo JSON con las tareas actualizadas
+            $this->addJsonFile($currentTasks);
+            return true; //si la tarea fue actualizada 
+        } else {
+            return false; //si no se encontró la tarea 
+        }
+    }
 
  
 }
