@@ -78,8 +78,8 @@ class ToDoModel {
             //array_splice($currentTasks, $posicionToDelete, 1);
             $currentTasks = array_values($currentTasks);// y reorganizo la posicion de los indices antes de guardar json
             $this->addJsonFile($currentTasks); //se agrega al json
-        }else{
-            echo "Error. No se encontró la tarea con el ID: $taskId.";
+        /*}else{
+            echo "Error. No se encontró la tarea con el ID: $taskId.";*/
         }    
 
         /*$found = false;
