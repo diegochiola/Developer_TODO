@@ -70,33 +70,45 @@ public function create_task_viewsAction(){
         $this->view->currentTasks = $currentTasks;
     }
     //probar con POST rn lugar de GET
-    
+    public function delete_taskAction() {
+       
+            if (isset($_POST['taskId'])) {
+                $taskId = $_POST['taskId'];
+                var_dump($taskId);
+                $this->toDo->deleteTask($taskId);
+                header("Location: tasks_list_views");
+                exit();
+            } 
+       
+    }
+/*
     public function delete_taskAction() {
         var_dump($_POST); //ver si funciona
         if (!empty($_POST)) {
             if (isset($_POST['taskId'])) {
                 $taskId = $_POST['taskId'];
-                var_dump($taskId);
+                //var_dump($taskId);
                 $this->toDo->deleteTask($taskId);
-                header("Location: /tasks_list_views");
+                header("Location: tasks_list_views");
                 exit();
             } 
         } else {
             echo "Request method not available.";
         }
-    }
-    /*public function deleteTaskAction() {
+    }*/
+    /*
+    public function delete_taskAction() {
         
         if(isset($_GET["taskId"])){
             $taskId = $_GET["taskId"];
             $this->toDo->deleteTask($taskId);
-            header("Location: /tasksList");
+            header("Location: tasksList");
             exit();
         }else{
             echo "Root Error";
         }    
-    }
-*/
+    }*/
+
 
    public function update_task_viewsAction(){
     if (isset($_GET["taskId"])) {
@@ -151,8 +163,8 @@ public function create_task_viewsAction(){
 
 
 //debug
-//$controller = new TaskController();
-//$controller->deleteTaskAction();
+$controller = new TaskController();
+$controller->delete_taskAction(0);
 /*
 // Llamar método indexAction()
 var_dump($controller->indexAction());

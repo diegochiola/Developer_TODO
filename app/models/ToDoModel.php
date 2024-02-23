@@ -65,21 +65,38 @@ class ToDoModel {
 //metodo delete task
     public function deleteTask(int $taskId){
         $currentTasks = $this->getTasks();
-        $found = false;
+        $posicionToDelete= null;
+        //en lugar del while probare con un foreach
+        foreach ($currentTasks as $posicion => $task){
+            if ($task["taskId"]== $taskId){
+                $posicionToDelete= $posicion;
+                break;
+            }
+        }
+        if ($posicionToDelete !== null) {
+            unset($currentTasks[$posicionToDelete]); //elimino la posicion con unset
+            //array_splice($currentTasks, $posicionToDelete, 1);
+            $currentTasks = array_values($currentTasks);// y reorganizo la posicion de los indices antes de guardar json
+            $this->addJsonFile($currentTasks); //se agrega al json
+        }else{
+            echo "Error. No se encontró la tarea con el ID: $taskId.";
+        }    
+
+        /*$found = false;
         $longArray = count($currentTasks);
         $i=0;
-        while($found==false && $i<$longArray)             
-        {
+        while($found != true && $i<$longArray){
             if($currentTasks[$i]["taskId"]==$taskId)
             {//se elimina posicion de  tarea en el array
-                array_splice($currentTasks,$i, 1);
+                array_splice($currentTasks,$i,1);
+
                 $found = true;//cuando encuentre tarea pasa a true
             }
             $i++;
         }
-
-        $this->addJsonFile($currentTasks); //se agrega al json
+        $this->addJsonFile($currentTasks); //se agrega al json */
     }
+    
     /*public function deleteTask(int $taskId){
         //buscar la tarea primero:
         $taskToDelete = $this->searchTask($taskId);//utilizo metodo searchTask
@@ -183,4 +200,18 @@ $currentTasks = $todoModel->getTasks();
 echo '<pre>';
 var_dump($currentTasks);
 echo '</pre>';
+*/
+/*
+$todoModel = new ToDoModel();
+$taskIdToDelete = 0; // Cambiar por el ID de la tarea que deseas eliminar
+echo "esta es la tarea en la posicion que le envie: ";
+var_dump($taskIdToDelete);
+$currentTasks = $todoModel->getTasks();
+var_dump($currentTasks[0]);
+
+$todoModel->deleteTask($taskIdToDelete);
+
+$currentTasks = $todoModel->getTasks();
+echo "Estas son las que aun continuan: ";
+var_dump($currentTasks);
 */

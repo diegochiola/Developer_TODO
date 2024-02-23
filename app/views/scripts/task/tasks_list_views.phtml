@@ -13,19 +13,18 @@
 
 <body style="background-color: #bbbbf5;">
 <main class="container mx-auto mt-10 lg:mt-20" >
-   
+<div class="text-4xl font-bold text-black mb-8 mt-10 text-center">TASKS LIST</div>
     <div class="flex justify-between items-center mb-6">
         <!-- Boton para volver al index -->
         <a href="<?= WEB_ROOT ?>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " style="background-color:#282854;">Home</a>
-        <div class="text-4xl font-bold text-black mb-8 mt-10 text-center">TASKS LIST</div>
     </div>
     
     <div class="mb-6">
     <!-- Titulos de las columnas -->
     <form method="post">
     
-        <table class="bg-gray-100 shadow-md rounded-3xl px-8 pt-6 pb-8 mb- w-full ">
-            <tr class="bg-gray-100">
+        <table class="bg-gray-100 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 w-full ">
+            <tr class="bg-gray-200">
                 <th class="py-2 px-4">Id</th>
                 <th class="py-2 px-4">Task</th>
                 <th class="py-2 px-4">Creation Date</th>
@@ -48,28 +47,19 @@
                         <td class="text-center"><?php echo $task['deadline'] ?></td>
                         <td class="text-center"><?php echo $task['status'] ?></td>
                         <td class="text-center"><?php echo $task['createdBy'] ?></td>
-                        <td class="py-2 px-4 text-right" colspan="2"><!-- para que aparezcan los botones debajo de la columna options -->
+                        <td class="py-2 px-4 text-center" colspan="2"><!-- para que aparezcan los botones debajo de la columna options -->
                         <!-- Boton update task -->
-                        <a href="<?= WEB_ROOT ?>/update_task_views?taskId=<?= $task['taskId'] ?>">
+                        <a href="update_task_views?taskId=<?= $task['taskId'] ?>">
                             <input type='button' name='update' id='update' value='Update' class='bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-300'>
                         </a>
-                         
-                         <!--<a href="updateTask_views?taskId=<?php echo $task['taskId'] ?>&taskName=<?php echo $task['taskName'] ?>&creationDate=<?php echo $task['creationDate'] ?>&deadline=<?php echo $task['deadline'] ?>&status=<?php echo $task['status'] ?>&created_By=<?php echo $task['createdBy'] ?>">
-                                <input type='button' name='update' id='update' value='Update' class='bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-300'>
-                            </a>-->
 
-                        <!-- Formulario para eliminar task 
-                        <form action="/deleteTask" method="post" style="display: inline;">
+                        <!-- Boton delete task -->
+                        <form action="delete_task" method="post" style="display: inline;">
                             <input type="hidden" name="taskId" value="<?= $task['taskId'] ?>">
                             <button type="submit" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>
-                        </form>-->
+                        </form>
+                  
 
-                            <!-- Boton delete task-->
-                            <button onclick="confirmDelete(<?= $task['taskId'] ?>)" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300' >Delete</button>
-                      
-                            <!-- <a href="/deleteTask?taskId=<?= $task['taskId'] ?>" onclick="return confirmDelete('<?= $task['taskName'] ?>');">
-                            <button type="button" onclick="confirmAndSubmit(<?= $task['taskId'] ?>)" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>
-                        </a>  -->
                         </td>
                     </tr>
                     <?php endforeach;
