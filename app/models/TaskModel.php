@@ -15,12 +15,8 @@
         };
     }
 }*/
-//realice ela clase TaskStatus:
-class TaskStatus {
-    public const TO_DO = 'To do';
-    public const IN_PROGRESS = 'In progress';
-    public const DONE = 'Done';
-}
+//Finalmente realice la clase TaskStatus:
+require_once 'TaskStatus.php';
 
 class Task{
 
@@ -87,8 +83,8 @@ class Task{
         return $this;
     }
 
-    public function getStatus(){
-        return $this->status;
+    public function getStatus(): string{
+        return (string) $this->status;
     }
     public function setStatus($status){
         $this->status = $status;
@@ -103,7 +99,27 @@ class Task{
     }
 
  
+ // Método para establecer todos los atributos de la tarea a la vez
+ public function setAttributes(array $attributes) {
+    foreach ($attributes as $key => $value) {
+        if (property_exists($this, $key)) {
+            $this->$key = $value;
+        }
+    }
+    return $this;
 }
+}
+
+/* Probar el metodo setAttributes
+$task = new Task("Repasar Examen", '2024-02-18 15:30:00', '2024-02-24 11:30:00', TaskStatus::TO_DO, "Laura Jimenez");
+$task->setAttributes([
+'status' => TaskStatus::DONE,
+'createdBy' => 'Juan Perez'
+]);
+
+// Verificar los cambios
+var_dump($task->getStatus());  
+var_dump($task->getCreatedBy()); 
 
 //probar clase
 /*
@@ -112,8 +128,7 @@ var_dump($task->getTaskId());
 var_dump($task->getTaskName());
 var_dump($task->getCreationDate());
 var_dump($task->getStatus());
-*/
-/*
+
 $draft =TaskStatus::DONE;
 echo $draft->getColor();
 echo $draft->value;

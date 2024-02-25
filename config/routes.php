@@ -14,14 +14,21 @@ $routes = array(
 	'/' => 'Task#index',
 	// TASKS:
 		// Listar todas las tareas
-		'/tasksList'=> 'Task#tasksListViews',
+		'/tasks_list_views'=> 'Task#tasks_list_views',
 		
 		// Borrar Tarea
-		'/deleteTask' => 'Task#deleteTask',
-		// Insertar una nueva tarea
-		'/insertTask'=> 'Task#insertTaskAction',
-		// Pre-edicion de una tarea
-		'/UpdateTask'=> 'Task#UpdateTaskViews',
-		// Edicion tarea
-		'/updateTask'=>'Task#updateTaskAction',
+		'/delete_task' => 'Task#delete_task',
+		
+		// ir a la vista create Task
+		'/create_task_views'=> 'Task#create_task_views',
+		// MANDAR FORMULARIO CREATE TASK AL CONTROLLER POR EL SUBMIT
+		'/create_task'=> 'Task#create_task',
+
+		// ir a la vista update task
+		'/update_task_views'=> 'Task#update_task_views',
+		// MANDAR FORMULARIO update TASK AL CONTROLLER POR EL SUBMIT
+		'/update_task'=>'Task#update_task',
+
+		
+		//'/updateTask_views' => 'TaskController#updateTaskAction',
 );

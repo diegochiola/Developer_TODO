@@ -35,7 +35,7 @@ class View
 		ob_start();
 		
 		// includes the view script
-		include(ROOT_PATH . '/app/views/scripts/' . $viewScript);
+		include(ROOT_PATH . '/app/views/scripts/' . $viewScript); 
 		
 		// returns the content of the output buffer
 		$this->_content = ob_get_clean();

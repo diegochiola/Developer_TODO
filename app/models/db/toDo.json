@@ -1,34 +1,18 @@
 [
     {
-        "taskId": 1,
-        "taskName": "Hacer la compra",
-        "creationDate": "2024-02-19 09:00:00",
-        "deadline": "2024-02-20 12:00:00",
-        "status": "To do",
-        "createdBy": "Juan"
+        "taskId": 2,
+        "taskName": "Read PHP files",
+        "creationDate": "2024-02-25T17:40",
+        "deadline": "2024-02-25T17:40",
+        "status": "IN_PROGRESS",
+        "createdBy": "Mariana"
     },
     {
         "taskId": 3,
-        "taskName": "Revisar correos electr\u00f3nicos",
-        "creationDate": "2024-02-18 09:00:00",
-        "deadline": "2024-02-19 12:00:00",
-        "status": "In progress",
-        "createdBy": "Pedro"
-    },
-    {
-        "taskId": 4,
-        "taskName": "Clean files",
-        "creationDate": "2024-02-19 10:00:00",
-        "deadline": "2024-02-20 12:00:00",
-        "status": "To do",
-        "createdBy": "Jimena"
-    },
-    {
-        "taskId": 5,
-        "taskName": "Change PC",
-        "creationDate": "2024-02-19 10:00:00",
-        "deadline": "2024-02-20 12:00:00",
-        "status": "Done",
-        "createdBy": "Ricardo"
+        "taskName": "Running",
+        "creationDate": "2024-02-25T17:50",
+        "deadline": "2024-02-25T17:50",
+        "status": "IN_PROGRESS",
+        "createdBy": "Roberta"
     }
 ]

@@ -141,3 +141,4 @@ class Controller
 		$this->_namedParameters[$key] = $value;
 	}
 }
+
