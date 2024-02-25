@@ -14,13 +14,5 @@
         "deadline": "2024-02-26T11:23",
         "status": "DONE",
         "createdBy": "Mariana"
-    },
-    {
-        "taskId": 3,
-        "taskName": "Running",
-        "creationDate": "2024-02-21T11:23",
-        "deadline": "2024-02-22T11:23",
-        "status": "DONE",
-        "createdBy": "Roberta"
     }
 ]

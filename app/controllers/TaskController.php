@@ -67,6 +67,8 @@ public function create_task_viewsAction(){
         // Imprimir los datos obtenidos
         //var_dump($currentTasks);
        //return $currentTasks;
+       //probar solucionar que muestre los valores en lugar de la constante:
+       
         $this->view->currentTasks = $currentTasks;
     }
     //probar con POST rn lugar de GET
