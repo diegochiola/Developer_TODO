@@ -29,7 +29,7 @@ class ToDoModel {
     public function createTask(Task $task){
         $currentTasks = $this->getTasks(); //obtenemos las tasks antes de agregar la nueva 
         $lastTaskId = $this->getLastTaskId();
-        $newTaskId = $lastTaskId + 1;
+        $newTaskId = $lastTaskId + 1;//por lo cual siempre comenzara en el uno el array
         // new task con cada atributo
         $newTask = [
             // recogemos los valores de los getters y lo pasamos a la clave del array asociativo
@@ -78,44 +78,9 @@ class ToDoModel {
             //array_splice($currentTasks, $posicionToDelete, 1);
             $currentTasks = array_values($currentTasks);// y reorganizo la posicion de los indices antes de guardar json
             $this->addJsonFile($currentTasks); //se agrega al json
-        /*}else{
-            echo "Error";*/
-        //} /*   
-
-        /*$found = false;
-        $longArray = count($currentTasks);
-        $i=0;
-        while($found != true && $i<$longArray){
-            if($currentTasks[$i]["taskId"]==$taskId)
-            {//se elimina posicion de  tarea en el array
-                array_splice($currentTasks,$i,1);
-
-                $found = true;//cuando encuentre tarea pasa a true
-            }
-            $i++;
-        }
-        $this->addJsonFile($currentTasks); //se agrega al json */
     } 
 }
-    
-    /*public function deleteTask(int $taskId){
-        //echo "Task ingresado con ID: $taskId<br>";
-        //buscar la tarea primero:
-        $taskToDelete = $this->searchTask($taskId);//utilizo metodo searchTask
-        if ($taskToDelete) {
-            // Obtener todas las tareas actuales
-            $currentTasks = $this->getTasks();
-            $updatedTasks = array_filter($currentTasks, function($task) use ($taskId) {
-                return $task["taskId"] !== $taskId;
-            });
-            // actualizo json
-            file_put_contents(__DIR__ . '/db/toDo.json', json_encode(array_values($updatedTasks), JSON_PRETTY_PRINT));
-            
-            echo "TaskId $taskId deleted succesfully.";
-        } else {
-            echo "Impossible to find taskId $taskId.";
-        }
-    }*/
+  
 //metodo search task
 public function searchTask(int $taskId): array {
     $currentTasks = $this->getTasks();

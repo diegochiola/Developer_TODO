@@ -15,12 +15,8 @@
         };
     }
 }*/
-//realice la clase TaskStatus:
-class TaskStatus {
-    public const TO_DO = 'To do';
-    public const IN_PROGRESS = 'In progress';
-    public const DONE = 'Done';
-}
+//Finalmente realice la clase TaskStatus:
+require_once 'TaskStatus.php';
 
 class Task{
 
@@ -87,8 +83,8 @@ class Task{
         return $this;
     }
 
-    public function getStatus(){
-        return $this->status;
+    public function getStatus(): string{
+        return (string) $this->status;
     }
     public function setStatus($status){
         $this->status = $status;

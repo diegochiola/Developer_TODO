@@ -40,11 +40,11 @@
         <!-- Status -->
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="status">Status:</label>
-            <select name="status" class="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="status">
-                <option value="TO_DO">To Do</option>
-                <option value="IN_PROGRESS">In Progress</option>
-                <option value="DONE">Done</option>
-            </select> 
+                <select name="status" class="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="status">
+                    <option value="TO_DO" <?php echo ($tasksFound['status'] == 'TO_DO') ? 'selected' : ''; ?>>To Do</option>
+                    <option value="IN_PROGRESS" <?php echo ($tasksFound['status'] == 'IN_PROGRESS') ? 'selected' : ''; ?>>In Progress</option>
+                    <option value="DONE" <?php echo ($tasksFound['status'] == 'DONE') ? 'selected' : ''; ?>>Done</option>
+                </select> 
         </div>
         <!-- Created date -->
         <div class="mb-4">

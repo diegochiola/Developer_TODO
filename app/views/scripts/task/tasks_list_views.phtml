@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!--link para sweetalert -->
     <title>TASKS LIST</title>
     
 </head>
@@ -15,16 +14,14 @@
 <main class="container mx-auto mt-10 lg:mt-20" >
 <div class="text-4xl font-bold text-black mb-8 mt-10 text-center">TASKS LIST</div>
     <div class="flex justify-between items-center mb-6">
-        <!-- Boton para volver al index -->
+    <!-- Boton para volver al index -->
         <a href="<?= WEB_ROOT ?>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " style="background-color:#282854;">Home</a>
         <a href="create_task_views" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " style="background-color:#282854;">Add Task</a>
-
     </div>
     
     <div class="mb-6">
     <!-- Titulos de las columnas -->
     <form method="post">
-    
         <table class="bg-gray-100 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 w-full ">
             <tr class="bg-gray-200">
                 <th class="py-2 px-4">Id</th>
@@ -34,10 +31,9 @@
                 <th class="py-2 px-4">Status</th>
                 <th class="py-2 px-4">Created by</th>
                 <th class="py-2 px-4">Options</th>
-                
             </tr>
-            <tr class="bg-gray-100">
 
+            <tr class="bg-gray-100">
             <!-- Filas para insertar datos -->
             <?php
             if ($this->currentTasks !== null) :
@@ -54,30 +50,24 @@
                         <a href="update_task_views?taskId=<?= $task['taskId'] ?>">
                             <input type='button' name='update' id='update' value='Update' class='bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-300'>
                         </a>
-
                         <!-- Boton delete task -->
                         <form action="delete_task" method="post" style="display: inline;">
                             <input type="hidden" name="taskId" value="<?= $task['taskId'] ?>">
-                            <button type="submit" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>                        </form>
-                  
-
+                            <button type="submit" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>                        
+                        </form>
                         </td>
                     </tr>
-                    <?php endforeach;
-                    endif; ?>
+                <?php endforeach;
+                endif; ?>
         </table>
     </form>
     </div>
-
         <!-- POP-UP para confirmar borrado de registro -->
         <script>
             function confirmDelete(taskName) {
                 return confirm("Are you sure? Once deleted, you will not be able to recover this task: " + taskName + ".");
             }
         </script>
-
     <div class="text-gray-600 text-center mt-4 text-xs">Thank you for using this app created by Gonzalo and Diega.</div>
-
 </body>
-
 </html>

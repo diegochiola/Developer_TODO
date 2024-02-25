@@ -44,13 +44,13 @@ public function create_task_viewsAction(){
             $status = $_POST["status"];
             $createdBy = $_POST["createdBy"];
     
-            // Crea una nueva instancia de la clase Task con los datos proporcionados
+            // Crea una nueva instancia 
             $task = new Task($taskName, $creationDate, $deadline, $status, $createdBy);
     
-            // Llama al método createTask del modelo ToDoModel para guardar la nueva tarea
+            // Llama al método createTask del modelo ToDoModel 
             $this->toDo->createTask($task);
     
-            // Redirige al usuario a la lista de tareas después de crear la tarea
+            // retorna a lista de tareas 
             header("Location: tasks_list_views");
             exit();
         } else {
@@ -84,34 +84,6 @@ public function create_task_viewsAction(){
             } 
        
     }
-/*
-    public function delete_taskAction() {
-        var_dump($_POST); //ver si funciona
-        if (!empty($_POST)) {
-            if (isset($_POST['taskId'])) {
-                $taskId = $_POST['taskId'];
-                //var_dump($taskId);
-                $this->toDo->deleteTask($taskId);
-                header("Location: tasks_list_views");
-                exit();
-            } 
-        } else {
-            echo "Request method not available.";
-        }
-    }*/
-    /*
-    public function delete_taskAction() {
-        
-        if(isset($_GET["taskId"])){
-            $taskId = $_GET["taskId"];
-            $this->toDo->deleteTask($taskId);
-            header("Location: tasksList");
-            exit();
-        }else{
-            echo "Root Error";
-        }    
-    }*/
-
 
    public function update_task_viewsAction(){
     if (isset($_GET["taskId"])) {
