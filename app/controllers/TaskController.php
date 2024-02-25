@@ -8,6 +8,8 @@ require_once(__DIR__ . '/../../lib/base/Controller.php');
 //var_dump("Controller included successfully");
 require_once(__DIR__ . '/../../lib/base/View.php');
 
+
+
 class TaskController extends Controller{
 
     private $toDo;
@@ -87,8 +89,9 @@ public function create_task_viewsAction(){
                 $this->toDo->deleteTask($taskId);
                 header("Location: tasks_list_views");
                 exit();
-            } 
-       
+            } else {
+                echo "Task not found.";
+            }
     }
 
 
