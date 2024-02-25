@@ -54,7 +54,7 @@ public function create_task_viewsAction(){
             header("Location: tasks_list_views");
             exit();
         } else {
-            // Si hay errores, podrías manejarlos de alguna manera, como mostrar un mensaje de error al usuario
+            // mostrar un mensaje de error al usuario
             foreach ($errors as $error) {
                 echo $error . "<br>";
             }
@@ -71,10 +71,11 @@ public function create_task_viewsAction(){
     }
     //probar con POST rn lugar de GET
     public function delete_taskAction() {
-       
+        var_dump($_POST['taskId']);
             if (isset($_POST['taskId'])) {
                 $taskId = $_POST['taskId'];
-                var_dump($taskId);
+                //var_dump($taskId);
+                //echo "Task ID to delete: " . $taskId; 
                 $this->toDo->deleteTask($taskId);
                 header("Location: tasks_list_views");
                 exit();
@@ -117,7 +118,8 @@ public function create_task_viewsAction(){
         $this->view->tasksFound = $tasksFound; //se asigna a la vistallevando los datos del id
         return $this->view->render('updateTaskViews.phtml'); // y la renderiza
     } else {
-        return $this->view->render('error_view.php', ['error' => 'Task ID is not defined.']); //sino sale error
+        header("Location: tasks_list_views");
+        exit();
     }
 }
 
@@ -129,7 +131,8 @@ public function create_task_viewsAction(){
             $deadline = $_POST["deadline"];
             $status = $_POST["status"];
             $createdBy = $_POST["createdBy"];
-
+            
+            //nuevo array
             $updatedTask = [
                 "taskId" => $taskId,
                 "taskName" => $taskName,
@@ -146,9 +149,7 @@ public function create_task_viewsAction(){
             // Redirige al usuario a la lista de tareas después de crear la tarea
             header("Location: tasks_list_views");
             exit();
-            } else {
-                return $this->view->render('error_view.php', ['error' => 'Failed to update task.']);
-            }
+            } 
         }
     }
     //metodo para buscaer tarea por id
@@ -163,8 +164,10 @@ public function create_task_viewsAction(){
 
 
 //debug
-$controller = new TaskController();
-$controller->delete_taskAction(0);
+//$controller = new TaskController();
+
+//$controller->delete_taskAction(0);
+
 /*
 // Llamar método indexAction()
 var_dump($controller->indexAction());

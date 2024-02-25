@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css">
+  
     <title>Create Task</title>
 </head>
 <body style="background-color: #bbbbf5;">
@@ -21,12 +22,12 @@
                 <!-- Task -->
                 <div class="mb-4"> 
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="taskName">Task:</label>
-                    <input type="text" name="taskName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Task:">
+                    <input type="text" name="taskName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Task:" required>
                 </div>
                 <!-- Status -->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="status">Status:</label>
-                    <select name="status" class="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="status" placeholder="Status:">
+                    <select name="status" class="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="status" placeholder="Status:" required>
                         <option value="TO_DO">To Do</option>
                         <option value="IN_PROGRESS">In Progress</option>
                         <option value="DONE">Done</option>
@@ -35,32 +36,27 @@
                 <!-- Created date -->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="creationDate">Creation Date:</label>
-                    <input type="datetime-local" name="creationDate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <input type="datetime-local" name="creationDate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                 </div>
                 <!-- Deadline -->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="deadline">Deadline:</label>
-                    <input type="datetime-local" name="deadline"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <input type="datetime-local" name="deadline"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                 </div>
                 <!-- Created by -->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="createdBy">Created By:</label>
-                    <input type="text" name="createdBy" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Created By:">
+                    <input type="text" name="createdBy" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Created By:" required>
                 </div>
                 <!-- Boton submit update -->
                 <div class="flex justify-center">
-                    <button type="submit" name="create_task" value="create_task" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Task</button>
+                    <button type="submit" name="create_task" value="create_task" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="background-color:#282854;">Submit</button>
                 </div>
               
-
             </form>
         </div>
     </main>
-        <!-- POP-UP para confirmar que se creo la tarea -->
-        <script>
-        function confirmCreate(taskName) {
-            return confirm("The task: " + taskName + " has beeen created.");
-        }
-        </script>
+    <div class="text-gray-600 text-center mt-4 text-xs">Thank you for using this app created by Gonzalo and Diega.</div>
+
 </body>
 </html>

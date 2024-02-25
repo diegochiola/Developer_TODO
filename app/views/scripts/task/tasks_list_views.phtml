@@ -58,8 +58,7 @@
                         <!-- Boton delete task -->
                         <form action="delete_task" method="post" style="display: inline;">
                             <input type="hidden" name="taskId" value="<?= $task['taskId'] ?>">
-                            <button type="submit" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>
-                        </form>
+                            <button type="submit" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>                        </form>
                   
 
                         </td>
@@ -76,12 +75,8 @@
                 return confirm("Are you sure? Once deleted, you will not be able to recover this task: " + taskName + ".");
             }
         </script>
-    <!-- POP-UP para confirmar borrado de registro 
-    <script>
-        function confirmDelete($taskName) {
-            return confirm("Are you sure? Once deleted, you will not be able to recover this task: " + taskname + ".");
-        }
-    </script>-->
+
+    <div class="text-gray-600 text-center mt-4 text-xs">Thank you for using this app created by Gonzalo and Diega.</div>
 
 </body>
 

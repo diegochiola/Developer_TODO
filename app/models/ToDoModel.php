@@ -79,8 +79,8 @@ class ToDoModel {
             $currentTasks = array_values($currentTasks);// y reorganizo la posicion de los indices antes de guardar json
             $this->addJsonFile($currentTasks); //se agrega al json
         /*}else{
-            echo "Error. No se encontró la tarea con el ID: $taskId.";*/
-        }    
+            echo "Error";*/
+        //} /*   
 
         /*$found = false;
         $longArray = count($currentTasks);
@@ -95,9 +95,11 @@ class ToDoModel {
             $i++;
         }
         $this->addJsonFile($currentTasks); //se agrega al json */
-    }
+    } 
+}
     
     /*public function deleteTask(int $taskId){
+        //echo "Task ingresado con ID: $taskId<br>";
         //buscar la tarea primero:
         $taskToDelete = $this->searchTask($taskId);//utilizo metodo searchTask
         if ($taskToDelete) {
@@ -214,4 +216,18 @@ $todoModel->deleteTask($taskIdToDelete);
 $currentTasks = $todoModel->getTasks();
 echo "Estas son las que aun continuan: ";
 var_dump($currentTasks);
+*/
+
+
+/* //esto verifica que si se puede eliminar el primer elemento de la lista
+$todoModel = new ToDoModel();
+var_dump($currentTasks = $todoModel->getTasks());
+
+$taskIdToDelete = 1; // Cambiar por el ID de la tarea que deseas eliminar
+echo "esta es la tarea en la posicion que le envie: ";
+var_dump($taskIdToDelete);
+$currentTasks = $todoModel->getTasks();
+//var_dump($currentTasks[1]);
+$todoModel->deleteTask($taskIdToDelete);
+var_dump($currentTasks = $todoModel->getTasks());
 */
