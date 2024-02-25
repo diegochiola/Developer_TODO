@@ -74,8 +74,8 @@ class ToDoModel {
             }
         }
         if ($posicionToDelete !== null) {
-            unset($currentTasks[$posicionToDelete]); //elimino la posicion con unset
-            //array_splice($currentTasks, $posicionToDelete, 1);
+            //unset($currentTasks[$posicionToDelete]); //elimino la posicion con unset
+            array_splice($currentTasks, $posicionToDelete, 1);
             $currentTasks = array_values($currentTasks);// y reorganizo la posicion de los indices antes de guardar json
             $this->addJsonFile($currentTasks); //se agrega al json
     } 
@@ -123,6 +123,7 @@ public function updateTask(array $updatedTask){
 
  
 }
+$todoModel = new ToDoModel();
 //Probar que el crud funcione correctamente
 /*
 $todoModel = new ToDoModel();
@@ -195,4 +196,15 @@ $currentTasks = $todoModel->getTasks();
 //var_dump($currentTasks[1]);
 $todoModel->deleteTask($taskIdToDelete);
 var_dump($currentTasks = $todoModel->getTasks());
+*/
+
+/*
+$todoModel = new ToDoModel();
+$currentTasks = $todoModel->getTasks();
+var_dump($currentTasks);
+
+$taskIdToDelete = 2; // Cambiar por el ID de la tarea que deseas eliminar
+$todoModel->deleteTask($taskIdToDelete);
+$currentTasks = $todoModel->getTasks();
+var_dump($currentTasks);
 */

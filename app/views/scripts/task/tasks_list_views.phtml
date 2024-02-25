@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +42,7 @@
                         <td class="text-center"><?php echo $task['taskName'] ?></td>
                         <td class="text-center"><?php echo $task['creationDate'] ?></td>
                         <td class="text-center"><?php echo $task['deadline'] ?></td>
-                        <td class="text-center"><?php echo $task['status'] ?></td>
+                        <td class="text-center"><?php echo $task['status']; ?></td>
                         <td class="text-center"><?php echo $task['createdBy'] ?></td>
                         <td class="py-2 px-4 text-center" colspan="2"><!-- para que aparezcan los botones debajo de la columna options -->
                         <!-- Boton update task -->
@@ -53,7 +52,7 @@
                         <!-- Boton delete task -->
                         <form action="delete_task" method="post" style="display: inline;">
                             <input type="hidden" name="taskId" value="<?= $task['taskId'] ?>">
-                            <button type="submit" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>                        
+                            <button type="submit" name="delete_task" onclick="return confirmDelete('<?= $task['taskName'] ?>');" class='bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-300'>Delete</button>                        
                         </form>
                         </td>
                     </tr>

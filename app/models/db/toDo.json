@@ -1,18 +1,1 @@
-[
-    {
-        "taskId": 2,
-        "taskName": "Read PHP files",
-        "creationDate": "2024-02-25T17:40",
-        "deadline": "2024-02-25T17:40",
-        "status": "IN_PROGRESS",
-        "createdBy": "Mariana"
-    },
-    {
-        "taskId": 3,
-        "taskName": "Running",
-        "creationDate": "2024-02-25T17:50",
-        "deadline": "2024-02-25T17:50",
-        "status": "IN_PROGRESS",
-        "createdBy": "Roberta"
-    }
-]
+[]

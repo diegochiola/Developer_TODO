@@ -1,20 +1,4 @@
 <?php
-//se incluyo el enum en este archivo porque de la otra forma daba error
-//backendEnum me devuelve strings
-/*enum TaskStatus: string {
-    case TO_DO = 'To do';
-    case IN_PROGRESS = 'In progress';
-    case DONE = 'Done';
-    
-    //metodo enum a string
-    public function getColor(){
-        return match($this){
-            TaskStatus::TO_DO=>'red',
-            TaskStatus::IN_PROGRESS=>'yellow',
-            TaskStatus::DONE=>'green',
-        };
-    }
-}*/
 //Finalmente realice la clase TaskStatus:
 require_once 'TaskStatus.php';
 

@@ -25,6 +25,7 @@ class TaskController extends Controller{
        
     }
 public function create_task_viewsAction(){   
+    
 }
 
  public function create_taskAction() { 
@@ -38,11 +39,11 @@ public function create_task_viewsAction(){
        
         if (empty($errors)) {
             // Accede a los datos del formulario de manera segura
-            $taskName = $_POST["taskName"];
+            $taskName = ucwords(strtolower($_POST["taskName"]));//para segurarme de que no escriban todo en mayus
             $creationDate = $_POST["creationDate"];
             $deadline = $_POST["deadline"];
             $status = $_POST["status"];
-            $createdBy = $_POST["createdBy"];
+            $createdBy = ucwords(strtolower($_POST["createdBy"]));
     
             // Crea una nueva instancia 
             $task = new Task($taskName, $creationDate, $deadline, $status, $createdBy);
@@ -62,7 +63,7 @@ public function create_task_viewsAction(){
     }
 
 
-    public function tasks_list_viewsAction() {
+   public function tasks_list_viewsAction() {
         $currentTasks = $this->toDo->getTasks();
         // Imprimir los datos obtenidos
         //var_dump($currentTasks);
@@ -71,9 +72,14 @@ public function create_task_viewsAction(){
        
         $this->view->currentTasks = $currentTasks;
     }
+
+ // Convertir el estado de las tareas a su representación de cadena
+
+
     //probar con POST rn lugar de GET
     public function delete_taskAction() {
-        var_dump($_POST['taskId']);
+        //var_dump($_POST);
+        //var_dump($_POST['taskId']);
             if (isset($_POST['taskId'])) {
                 $taskId = $_POST['taskId'];
                 //var_dump($taskId);
@@ -85,12 +91,13 @@ public function create_task_viewsAction(){
        
     }
 
+
    public function update_task_viewsAction(){
     if (isset($_GET["taskId"])) {
         $taskId = $_GET["taskId"];
         $tasksFound = $this->toDo->searchTask($taskId);  
         $this->view->tasksFound = $tasksFound; //se asigna a la vistallevando los datos del id
-        return $this->view->render('updateTaskViews.phtml'); // y la renderiza
+        return $this->view->render('task/updateTaskViews.phtml'); // y la renderiza
     } else {
         header("Location: tasks_list_views");
         exit();
@@ -100,11 +107,11 @@ public function create_task_viewsAction(){
     public function update_taskAction() {
         if (isset($_POST["taskId"])) {
             $taskId = (int) $_POST["taskId"];
-            $taskName = $_POST["taskName"];
+            $taskName = ucwords(strtolower($_POST["taskName"]));
             $creationDate = $_POST["creationDate"];
             $deadline = $_POST["deadline"];
             $status = $_POST["status"];
-            $createdBy = $_POST["createdBy"];
+            $createdBy = ucwords(strtolower($_POST["createdBy"]));
             
             //nuevo array
             $updatedTask = [
@@ -139,7 +146,9 @@ public function create_task_viewsAction(){
 
 //debug
 //$controller = new TaskController();
-
+//var_dump($_POST['taskId']);
+//$controller->delete_taskAction();
+//var_dump($controller->tasks_list_viewsAction());
 //$controller->delete_taskAction(0);
 
 /*
